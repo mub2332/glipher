@@ -11,6 +11,10 @@ $(function () {
         return { minutes, seconds };
     }
 
+    function formatSeconds(seconds) {
+        return seconds < 10 ? "0" + seconds : seconds;
+    }
+
     chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
         url = tabs[0].url;
         chrome.tabs.sendMessage(
@@ -41,16 +45,10 @@ $(function () {
                 $("#startText").text(
                     currentStartMinutes +
                         " : " +
-                        (currentStartSeconds < 10
-                            ? "0" + currentStartSeconds
-                            : currentStartSeconds)
+                        formatSeconds(currentStartSeconds)
                 );
                 $("#endText").text(
-                    currentEndMinutes +
-                        " : " +
-                        (currentEndSeconds < 10
-                            ? "0" + currentEndSeconds
-                            : currentEndSeconds)
+                    currentEndMinutes + " : " + formatSeconds(currentEndSeconds)
                 );
             }
         );
@@ -84,11 +82,7 @@ $(function () {
             var currentStartSeconds = currentStartTime.seconds;
             $("#start").attr("value", currentStart);
             $("#startText").text(
-                currentStartMinutes +
-                    " : " +
-                    (currentStartSeconds < 10
-                        ? "0" + currentStartSeconds
-                        : currentStartSeconds)
+                currentStartMinutes + " : " + formatSeconds(currentStartSeconds)
             );
         }
 
