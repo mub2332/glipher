@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+
+    background-color: #202020;
+    color: #c7c9d7;
+    width: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem 1rem;
+    margin: 1rem;
+}
+
+h2 {
+    color: #fff;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 200;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.header-container {
+    width: 50%;
+    border-bottom: 2px solid #fff;
+}
+
+p {
+    text-align: center;
+    align-self: flex-start;
+    padding: 2rem;
+    font-size: 1.5rem;
+}
+
+label {
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+input {
+    width: 80%;
+    padding: 1rem;
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 3rem;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 1rem 2rem;
+    width: 80%;
+    border-radius: 0.5rem;
+    border: none;
+    transition: all 0.2s;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.5rem);
+}
