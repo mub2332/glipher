@@ -1,0 +1,16 @@
+{
+  "name": "glipher",
+  "version": "1.0.0",
+  "description": "App to create gif from youtube videos",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Marcel",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^14.0.13",
+    "aws-lambda": "^1.0.6",
+    "ytdl-core": "^2.1.7"
+  }
+}
