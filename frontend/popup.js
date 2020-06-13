@@ -77,6 +77,7 @@ $(function () {
 
         if (currentStart >= currentEnd) {
             currentStart = currentEnd - 1;
+            if (currentStart < 0) currentStart = 0;
             var currentStartTime = convertTime(currentStart);
             var currentStartMinutes = currentStartTime.minutes;
             var currentStartSeconds = currentStartTime.seconds;
