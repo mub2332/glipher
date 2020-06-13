@@ -87,7 +87,7 @@ $(function () {
             );
         }
 
-        $("#start").attr("max", currentEnd - 1);
+        $("#start").attr("max", currentEnd - 1 < 0 ? 0 : currentEnd - 1);
         $("#endText").text(
             currentMinutes +
                 " : " +
