@@ -1,5 +1,6 @@
 $(function () {
   var url;
+  var title;
   var maxtime;
   var currentStart;
   var currentEnd;
@@ -23,6 +24,7 @@ $(function () {
       { frameId: 0 },
       function (response) {
         maxtime = response.max;
+        title = response.title;
         currentStart = parseInt(response.current);
         currentEnd = parseInt(currentStart + 5);
 
@@ -93,5 +95,7 @@ $(function () {
     );
   });
 
-  $('#createGIF').click(function () {});
+  $('#createGIF').click(function () {
+    alert(title);
+  });
 });

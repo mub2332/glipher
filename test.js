@@ -1,8 +1,10 @@
-const {handler} = require('./lambdaFunctions/createGif/index')
-const fs = require('fs')
+const { handler } = require('./lambdaFunctions/createGif/index');
+const fs = require('fs');
 
-const downloadUrl = handler({
-	startDuration:0,
-	endDuration: 5,
-	url: "https://www.youtube.com/watch?v=1VD70_8IN1w"
-})
+handler({
+  startDuration: 0,
+  endDuration: 30,
+  url: 'https://www.youtube.com/watch?v=ZmrrIIhtY7w',
+}).then((response) => {
+  console.log(response.body);
+});
