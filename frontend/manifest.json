@@ -1,26 +1,26 @@
 {
-    "manifest_version": 2,
-    "name": "Glipher",
-    "version": "1.0",
-    "description": "Clip YT videos to create animated GIFs",
-    "icons": {
-        "16": "16.png",
-        "48": "48.png",
-        "128": "128.png"
-    },
-    "background": {
-        "scripts": ["background.js"],
-        "persistent": false
-    },
-    "page_action": {
-        "default_title": "Glipher", // optional; shown in tooltip
-        "default_popup": "popup.html" // optional
-    },
-    "permissions": ["declarativeContent", "tabs", "activeTab"],
-    "content_scripts": [
-        {
-            "matches": ["*://*.youtube.com/*"],
-            "js": ["jquery-3.5.1.min.js", "content.js"]
-        }
-    ]
+  "manifest_version": 2,
+  "name": "Glipher",
+  "version": "1.0",
+  "description": "Clip YT videos to create animated GIFs",
+  "icons": {
+    "16": "16.png",
+    "48": "48.png",
+    "128": "128.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_title": "Glipher", // optional; shown in tooltip
+    "default_popup": "popup.html" // optional
+  },
+  "permissions": ["declarativeContent", "tabs", "activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["jquery-3.5.1.min.js", "content.js"]
+    }
+  ]
 }
