@@ -1,6 +1,7 @@
 const ytdl = require('ytdl-core')
 const fs = require('fs');
 const ffmpeg = require('fluent-ffmpeg')
+const {uploadImage} = require('../s3/S3Interface')
 
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -16,16 +17,22 @@ exports.handler = async (event, context) => {
 
         const gifDuration = endDuration - startDuration
 
-        // Video Download
+        console.log("Downloading Video");
         const byteStream = await ytdl(url, {begin:convertToString(startDuration)});
 
-        const buffer = fs.createWriteStream('result.gif')
+        const editedStream = fs.createWriteStream('result.gif');
         
+        console.log("Trimming Video")
         ffmpeg(byteStream)
             .setDuration(gifDuration).format('gif')
-            .output(buffer)
-            .run();
+            .output(editedStream)
+            .on('end', () => {
+                const buffer = fs.readFileSync('result.gif');
+                console.log(`File turned into buffer`);
+                uploadImage(buffer, 'result.gif');
+            }).run();
 
+        // Upload the gif into the 
         return {
             statusCode: 200,
             body: { downloadUrl :"ABD" },

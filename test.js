@@ -3,6 +3,6 @@ const fs = require('fs')
 
 const downloadUrl = handler({
 	startDuration:0,
-	endDuration: 5,
-	url: "https://www.youtube.com/watch?v=1VD70_8IN1w"
-})
+	endDuration: 30,
+	url: "https://www.youtube.com/watch?v=ZmrrIIhtY7w"
+}).then(res => console.log(res))
