@@ -4,7 +4,7 @@ const fs = require('fs');
 handler({
   startDuration: 0,
   endDuration: 30,
-  url: 'https://www.youtube.com/watch?v=ZmrrIIhtY7w',
+  url: 'https://www.youtube.com/watch?v=ZmrrIIhtY7w', videoTitle:"Chika Dance"
 }).then((response) => {
   console.log(response.body);
 });
