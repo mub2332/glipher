@@ -11,7 +11,6 @@
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "aws-sdk": "^2.696.0",
-    "bluebird": "^3.7.2",
     "dotenv": "^8.2.0",
     "fluent-ffmpeg": "^2.1.2",
     "ytdl-core": "^2.1.7"

@@ -1,0 +1,17 @@
+{
+    "name": "glipher",
+    "version": "1.0.0",
+    "description": "App to create gif from youtube videos",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "author": "Marcel",
+    "license": "MIT",
+    "dependencies": {
+        "@ffmpeg-installer/ffmpeg": "^1.0.20",
+        "dotenv": "^8.2.0",
+        "fluent-ffmpeg": "^2.1.2",
+        "ytdl-core": "^2.1.7"
+    }
+}
