@@ -96,6 +96,32 @@ $(function () {
   });
 
   $('#createGIF').click(function () {
-    alert(title);
+    const data = {
+      url,
+      videoTitle: title,
+      startDuration: currentStart,
+      endDuration: currentEnd,
+    };
+
+    fetch(
+      'https://a9dqqmewub.execute-api.us-east-1.amazonaws.com/production/gif',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify(data),
+        mode: 'no-cors',
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((json) => {
+        console.log(json);
+      });
   });
 });
