@@ -2,6 +2,7 @@ const ytdl = require("ytdl-core");
 const fs = require("fs");
 const ffmpeg = require("fluent-ffmpeg");
 const { uploadImage, getDownloadURL } = require("./S3Interface");
+const path = require("path");
 
 const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -14,12 +15,11 @@ const handler = async (event, context) => {
             throw { message: "End time is put before start time" };
         }
 
-        const correctedTitle =
-            videoTitle.split(" ").join("_") +
-            String(startDuration) +
-            "-" +
-            String(endDuration) +
-            ".gif";
+        const correctedTitle = videoTitle
+            .replace("/", "_")
+            .split(" ")
+            .join("_")
+            .concat(String(startDuration), "-", String(endDuration), ".gif");
 
         const gifDuration = endDuration - startDuration;
 
@@ -28,7 +28,11 @@ const handler = async (event, context) => {
             begin: convertToString(startDuration),
         });
 
-        const editedStream = fs.createWriteStream("/tmp/" + correctedTitle);
+        console.log(path.join(`/tmp/`, correctedTitle));
+
+        const editedStream = fs.createWriteStream(
+            path.join(`/tmp/`, correctedTitle)
+        );
 
         console.log("Trimming Video");
 
@@ -49,7 +53,7 @@ const handler = async (event, context) => {
         });
 
         await trimingCommand;
-        const buffer = fs.readFileSync("/tmp/" + correctedTitle);
+        const buffer = fs.readFileSync(path.join(`/tmp/`, correctedTitle));
         await uploadImage(buffer, correctedTitle);
 
         const downloadURL = await getDownloadURL(correctedTitle);
@@ -73,12 +77,12 @@ const convertToString = duration => {
     const minuteString = String(Math.floor(duration / 60));
     const secondString = String(duration % 60);
 
-    return "00:" + padding(minuteString) + ":" + padding(secondString);
+    return "00:".concat(padding(minuteString), ":", padding(secondString));
 };
 
 const padding = timeString => {
     if (timeString.length === 1) {
-        return "0" + timeString;
+        return "0".concat(timeString);
     } else return timeString;
 };
 

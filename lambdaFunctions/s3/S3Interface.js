@@ -15,7 +15,7 @@ const uploadImage = async (buffer, filename) => {
         console.log("Uploading Image Start");
         const destparams = {
             Bucket: process.env.BUCKET,
-            Key: "public/" + filename,
+            Key: "public/".join(filename),
             Body: buffer,
             ContentType: "video",
         };
@@ -56,7 +56,7 @@ const getDownloadURL = async filename => {
         console.log("Getting Gif download URL");
         const sourceParam = {
             Bucket: process.env.BUCKET,
-            Key: "public/" + filename,
+            Key: "public/".join(filename),
             Expires: 1200,
         };
 
