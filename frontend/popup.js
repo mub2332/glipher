@@ -103,6 +103,8 @@ $(function () {
       endDuration: currentEnd,
     };
 
+    $('#createGIF').text('Processing...');
+
     fetch(
       'https://a9dqqmewub.execute-api.us-east-1.amazonaws.com/production/gif',
       {
@@ -113,7 +115,6 @@ $(function () {
           'Access-Control-Allow-Origin': '*',
         },
         body: JSON.stringify(data),
-        mode: 'no-cors',
       }
     )
       .then((response) => {
@@ -121,7 +122,14 @@ $(function () {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
+        chrome.downloads.download({
+          url: json.body.downloadUrl,
+          saveAs: false,
+          filename: 'download.gif',
+        });
+      })
+      .then(() => {
+        $('#createGIF').text('Create GIF');
       });
   });
 });

@@ -16,7 +16,13 @@
     "default_title": "Glipher", // optional; shown in tooltip
     "default_popup": "popup.html" // optional
   },
-  "permissions": ["declarativeContent", "tabs", "activeTab"],
+  "permissions": [
+    "declarativeContent",
+    "tabs",
+    "activeTab",
+    "downloads",
+    "https://a9dqqmewub.execute-api.us-east-1.amazonaws.com/production/gif"
+  ],
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],
