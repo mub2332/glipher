@@ -9,6 +9,8 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 
 const handler = async (event, context) => {
     try {
+        console.log("Request Params", event);
+
         const { url, startDuration, endDuration, videoTitle } = event;
 
         if (startDuration >= endDuration) {
@@ -24,9 +26,7 @@ const handler = async (event, context) => {
         const gifDuration = endDuration - startDuration;
 
         console.log("Downloading Video");
-        const byteStream = ytdl(url, {
-            begin: convertToString(startDuration),
-        });
+        const byteStream = ytdl(url);
 
         console.log(path.join(`/tmp/`, correctedTitle));
 
@@ -38,6 +38,7 @@ const handler = async (event, context) => {
 
         const trimingCommand = new Promise((resolve, reject) => {
             ffmpeg(byteStream)
+                .setStartTime(convertToString(startDuration))
                 .setDuration(gifDuration)
                 .format("gif")
                 .output(editedStream)
@@ -46,7 +47,7 @@ const handler = async (event, context) => {
                     resolve();
                 })
                 .on("error", error => {
-                    console.error(error.message);
+                    console.error(error);
                     reject();
                 })
                 .run();
@@ -68,7 +69,7 @@ const handler = async (event, context) => {
     } catch (err) {
         return {
             statusCode: 500,
-            body: err.message,
+            body: err,
         };
     }
 };

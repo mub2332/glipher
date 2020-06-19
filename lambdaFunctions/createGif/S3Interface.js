@@ -15,12 +15,12 @@ const uploadImage = async (buffer, filename) => {
         console.log("Uploading Image Start");
         const destparams = {
             Bucket: process.env.BUCKET,
-            Key: "public/".join(filename),
+            Key: "public/".concat(filename),
             Body: buffer,
             ContentType: "video",
         };
 
-        const putResult = await s3Client.putObject(destparams).promise();
+        await s3Client.putObject(destparams).promise();
 
         console.log(`Successfully uploaded ${filename} to ${destparams.Key}`);
         return;
@@ -54,9 +54,10 @@ const uploadImage = async (buffer, filename) => {
 const getDownloadURL = async filename => {
     try {
         console.log("Getting Gif download URL");
+
         const sourceParam = {
             Bucket: process.env.BUCKET,
-            Key: "public/".join(filename),
+            Key: "public/".concat(filename),
             Expires: 1200,
         };
 
