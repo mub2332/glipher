@@ -1,11 +1,7 @@
 const { handler: createGif } = require("./lambdaFunctions/createGif/index");
-const {
-    handler: retrieveGif,
-} = require("./lambdaFunctions/node_modules/presentGif/index");
-const fs = require("fs");
 
 createGif({
-    startDuration: 0,
+    startDuration: 3,
     endDuration: 20,
     url: "https://www.youtube.com/watch?v=ZmrrIIhtY7w",
     videoTitle: "Chika Dance",
